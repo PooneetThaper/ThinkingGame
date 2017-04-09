@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#leaderboard{
+	position: relative;
+	margin-left: 80px;
+}
+#leadertable{
+	font-family: "Courier New";
+	border-collapse: collapse;
+	width: 400px;
+}
+
+#leadertable td, #leadertable th{
+	padding: 8px;
+	width: 100px;
+	text-align: : center;
+}
+
+#leadertable tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+#leadertable th{
+	padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #cefdf1;
+    color: white;
+}
+</style>
+<script src="jquery-3.2.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $.ajaxSetup({ cache: false });
+  setInterval(function() {
+    $('#leaderboard').load('test.txt');
+  }, 1000); // the "3000" 
+});
+
+</script>
+</head>
+<body>
+
+<div id="leaderboard">
+<table id ="leadertable">
+	<tr>
+		<th>Rank</th>
+		<th>User</th>
+		<th>Score</th>
+	</tr>
+	<tr id = "rank1">
+		<td>1</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank2">
+		<td>2</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank3">
+		<td>3</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank4">
+		<td>4</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank5">
+		<td>5</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank6">
+		<td>6</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank7">
+		<td>7</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank8">
+		<td>8</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank9">
+		<td>9</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+	<tr id = "rank10">
+		<td>10</td>
+		<td>Joom</td>
+		<td>1000</td>
+	</tr>
+</table>
+	
+
+</div>
+
+
+</body>
+</html>
