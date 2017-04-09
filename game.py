@@ -2,6 +2,7 @@ import random
 import api
 import math
 import changetext
+import operator
 
 maxRound = 25
 currentRound = -1
@@ -36,6 +37,14 @@ def nextRound():
 	currentRound +=1
 	currentTags = api.getAllTags(randomPhotos[currentRound])
 	# print(randomPhotos[currentRound],currentTags)
+
+def getTops():
+	global record
+	newDict = {}
+	for user in record:
+		newDict[record[user]["username"]] = record[user]["score"]
+	sortedRanking = sorted(newDict.items(), key=operator.itemgetter(1))
+	return sortedRanking[:10]
 
 def isGood(guess):
 	global currentTags
