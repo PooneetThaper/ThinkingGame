@@ -3,9 +3,54 @@
 <head>
 <style>
 
+body{
+	background-image: url('bg.gif');
+
+}
+#content{
+	margin: auto;
+	width: 50%;
+}
+
+#logo{
+	position:relative;
+	width:250px;
+	right:100px;
+
+}
+
+#lower{
+	position:relative;
+	top:-175px;
+}
+#instr{
+	position: relative;
+	left:175px;
+	top:-150px;
+	font-family: "Courier New";
+	width:100%;
+	background-color:white;
+}
+#guessPhoto{
+	position:relative;
+	right:200px;
+	top:150px;
+	text-align: center;
+	font-family: "Courier New";
+
+
+}
+#guessPhoto img {
+	border-radius: 25px;
+	-webkit-transition: all 0.5s ease 0.5s;
+    transition: all 0.5s ease 0.5s;
+}
+
 #leaderboard{
 	position: relative;
-	margin-left: 80px;
+	top:-200px;
+	left:350px;
+	
 }
 #leadertable{
 	font-family: "Courier New";
@@ -23,6 +68,10 @@
 	background-color: #f2f2f2;
 }
 
+#leadertable tr:nth-child(odd){
+	background-color: white;
+}
+
 #leadertable th{
 	padding-top: 12px;
     padding-bottom: 12px;
@@ -36,75 +85,88 @@ $(document).ready(function() {
   $.ajaxSetup({ cache: false });
   setInterval(function() {
     $('#leaderboard').load('test.txt');
-  }, 1000); // the "3000" 
+    $('#guessPhoto').load('path.txt');
+  }, 1000);
 });
 
 </script>
 </head>
 <body>
 
-<div id="leaderboard">
-<table id ="leadertable">
-	<tr>
-		<th>Rank</th>
-		<th>User</th>
-		<th>Score</th>
-	</tr>
-	<tr id = "rank1">
-		<td>1</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank2">
-		<td>2</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank3">
-		<td>3</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank4">
-		<td>4</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank5">
-		<td>5</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank6">
-		<td>6</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank7">
-		<td>7</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank8">
-		<td>8</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank9">
-		<td>9</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-	<tr id = "rank10">
-		<td>10</td>
-		<td>Joom</td>
-		<td>1000</td>
-	</tr>
-</table>
-	
+<div id ="content">
+	<div id="header">
+	<img id = "logo" src='logo.png'>
+	<br>
+	<p id = 'instr'>text 347-658-1337. guess the image, earn the most points!</p>
+	</div>
+	<div id= "lower">
+	<div id="guessPhoto">
+		<img src='images_raw/default.jpg'>
+		<br>
+		Current Photograph
+	</div>
+	<div id="leaderboard">
+	<table id ="leadertable">
+		<tr>
+			<th>Rank</th>
+			<th>User</th>
+			<th>Score</th>
+		</tr>
+		<tr id = "rank1">
+			<td>1</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank2">
+			<td>2</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank3">
+			<td>3</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank4">
+			<td>4</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank5">
+			<td>5</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank6">
+			<td>6</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank7">
+			<td>7</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank8">
+			<td>8</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank9">
+			<td>9</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+		<tr id = "rank10">
+			<td>10</td>
+			<td>user</td>
+			<td>0</td>
+		</tr>
+	</table>
+	</div>
 
+	</div>
 </div>
-
 
 </body>
 </html>

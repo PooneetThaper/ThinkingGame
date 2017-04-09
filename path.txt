@@ -1,0 +1,3 @@
+<img src='images_raw/1.jpg'>
+<br>
+Current Photograph

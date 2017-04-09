@@ -34,6 +34,7 @@ def nextRound():
 	global currentRound
 	global currentTags
 
+	changetext.changePath(randomPhotos[currentRound])
 	currentRound +=1
 	currentTags = api.getAllTags(randomPhotos[currentRound])
 	# print(randomPhotos[currentRound],currentTags)
