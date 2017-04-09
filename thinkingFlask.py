@@ -1,8 +1,12 @@
 from flask import Flask, request
 from twilio.rest import Client
 import requests
-import game
 import time
+import random
+import api
+import math
+import changetext
+import operator
 
 app = Flask(__name__)
 
@@ -20,52 +24,95 @@ client = Client(ACCOUNT_SID, AUTH_TOKEN)
 #		  media_url = 'https://raw.githubusercontent.com/pooneetthaper/ThinkingGame/master/images/0.jpg?token=AHlePwtuOuIbczP3cS06i2m1i6J55ijhks5Y80yBwA%3D%3D'
 #    )
 
-currentWaits = -1
-began = False
+maxRound = 5
+currentRound = -1
+record = {}
+randomPhotos = []
+currentTags = []
 
 @app.route('/')
 def index():
-	# client.messages.create(
- #        to = '9178681272',
- #        from_ = '3476581337',
- #        body = 'yay?',
- #        
-	game.setUpGame()
+	setUpGame()
+	app.logger.info("HI")
 	return render_template("index.html")
+
+@app.route('/increment')
+def increment():
+	endRound()
+	nextRound()
 
 @app.route('/sms', methods=['POST']) # UPDATE FUNCTION
 def sms():
-	global game.currentRound
-	global game.maxRound
-	global game.record
+	global currentRound
+	global maxRound
+	global record
 	global currentWaits
 	global began
+	num = request.form['From']
+	inp = request.form['Body']
 
-	if(game.currentRound < game.maxRound-1):
-		
-		game.endRound()
-		if(game.currentRound == -1): # Before game
-			num = request.form['From']
-			user = request.form['Body']
-			game.addUser(num, user)
-			if(not began):
-				began = True
-				startTime = time.time()
-				while(time.time() <= startTime + 10):
-				 	continue
-		else:
-			if(currentWaits<game.currentRound):
-				currentWaits+=1
-				while(time.time() <= startTime + 10):
-					continue
-				game.nextRound()
-				game.endRound()
+	if(currentRound < 0):
+		addUser(num, inp)
+	else:
+		makeGuess(num,inp)
 
-def preGame():
+def setUpGame():
+	global randomPhotos
+	allPhotos = api.getAllPaths()
+	randomIndices = []
 
+	while(len(randomIndices) < maxRound):
+		index = random.randrange(len(allPhotos))
+		if index not in randomIndices:
+			randomIndices.append(index)
+			randomPhotos.append(allPhotos[index])
 
-	app.logger.info("Added User: {0}".format(user))
-	return user
+def addUser(number,username):
+	global record
+	record[number] = {}
+	record[number]["lastSuccessfulRound"] = 0
+	record[number]["score"] = 0
+	record[number]["username"] = username
+
+def nextRound():
+	#send time request to flask server
+	global randomPhotos
+	global currentRound
+	global currentTags
+
+	currentRound +=1
+	currentTags = api.getAllTags(randomPhotos[currentRound])
+	# print(randomPhotos[currentRound],currentTags)
+
+def endRound():
+	changetext.changeText(getTops())
+
+def makeGuess(number,guess):
+	global currentRound
+	global record
+
+	if currentRound > record.get(number).get("lastSuccessfulRound"):
+		index = isGood(guess)
+		if (index >= 0):
+			record[number]["score"] += getScore(index)
+			record[number]["lastSuccessfulRound"] = currentRound
+
+def getTops():
+	global record
+	newDict = {}
+	for user in record:
+		newDict[record[user]["username"]] = record[user]["score"]
+	sortedRanking = sorted(newDict.items(), key=operator.itemgetter(1))
+	return sortedRanking[:10]
+
+def isGood(guess):
+	global currentTags
+	for i in range(5):
+		if guess.lower() == currentTags[i].lower(): return i
+	return -1
+
+def getScore(index):
+	return math.floor(3-(index/2.0))
 
 
 if __name__ == "__main__":
