@@ -37,6 +37,7 @@ def nextRound():
 	currentRound +=1
 	currentTags = api.getAllTags(randomPhotos[currentRound])
 	# print(randomPhotos[currentRound],currentTags)
+	changetext(getTops())
 
 def getTops():
 	global record

@@ -1,8 +1,7 @@
 import random
 
-f = open("test.txt", "w")
-
-def changeText(f, dict):
+def changeText(f, listRanks):
+	f = open("test.txt", "w")
 	f.write('<table id ="leadertable">')
 	f.write('<tr>')
 	f.write('<th>Rank</th>')
