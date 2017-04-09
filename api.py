@@ -33,7 +33,6 @@ def getAllPaths():
     paths = []
     cursor = db.photos.find({})
     for document in cursor:
-        print(document["path"])
         paths.append(document["path"])
     return paths
 
@@ -48,4 +47,4 @@ if __name__ == "__main__":
         print(file)
         add(file)
     '''
-    #print(getAllTags("images/0.jpg"))
+    print(getAllPaths())
