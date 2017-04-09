@@ -70,12 +70,12 @@ def getScore(index):
 
 
 
-setUpGame()
-for i in range(5):
-	addUser(i,"Urmom{}".format(i))
-while(currentRound < maxRound-1):
-	nextRound()
-	makeGuess(0,"sea")
+# setUpGame()
+# for i in range(5):
+# 	addUser(i,"Urmom{}".format(i))
+# while(currentRound < maxRound-1):
+# 	nextRound()
+# 	makeGuess(0,"sea")
 
-for user in record.keys():
-	print(user, record[user]["score"])
+# for user in record.keys():
+# 	print(user, record[user]["score"])

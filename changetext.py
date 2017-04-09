@@ -1,6 +1,6 @@
 import random
 
-def changeText(f, listRanks):
+def changeText(listRanks):
 	f = open("test.txt", "w")
 	f.write('<table id ="leadertable">')
 	f.write('<tr>')
@@ -9,18 +9,24 @@ def changeText(f, listRanks):
 	f.write('<th>Score</th>')
 	f.write('</tr>')
 
-	for i in range(1,11):
-		s = '<tr id = "rank' + str(i) +'">'
+	count = 1
+
+	for i in listRanks.keys():
+		s = '<tr id = "rank' + count +'">'
 		f.write(s)
-		r = '<td>' + str(i) + '</td>'
+		r = '<td>' + count + '</td>'
 		f.write(r)
-		q = '<td>' + str(random.random()) + '</td>'
+		q = '<td>' + i + '</td>'
 		f.write(q)
-		score = '<td>' + str(random.randrange(100)) + '</td>'
+		score = '<td>' + listRanks[i] + '</td>'
 		f.write(score)
 		f.write('</tr>')
+		count +=1
 
 	f.write('</table>')
 
-def changePath(f, path):
+def changePath(path):
+	f = open("path.txt", "w")
 	f.write(path)
+	f.write('<br>')
+	f.write('Current Photograph')

@@ -12,8 +12,8 @@ def add(filename):
     #ClarifaiApi stuff
     pathC = os.path.join("images_raw/",filename)
     pathM = os.path.join("images/",filename)
-    clarifai_api = ClarifaiApi("5ufSEyCVOzwUzNX5nDWPFXaTHbOTkbS3NzAGyrNa",
-        "JbqnMT_wofMV1IS-QZ0jIsYo-60tdHkQOFfqGxM7")
+    clarifai_api = ClarifaiApi("Pz-VQR1oFNAMgL8AoiD5zoUXZ3MxdgOP7OFO4TxS",
+        "s0LGYZYf6JDanLdijlczkfAywYWxlVxL3wGLiG9e")
     result = clarifai_api.tag_images(open(pathC, 'rb'))
     for tag in result['results'][0]['result']['tag']['classes']:
         tag = tag.encode('ascii', 'ignore')
@@ -40,9 +40,9 @@ def getAllTags(path):
     cursor = db.photos.find({"path":path})
     return cursor[0]['tags']
 
-if __name__ == "__main__":
-    #for adding to the db
-    for file in os.listdir('images_raw'):
-        print(file)
-        add(file)
-    print(getAllPaths())
+# if __name__ == "__main__":
+#     #for adding to the db
+#     for file in os.listdir('images_raw'):
+#         print(file)
+#         add(file)
+#     print(getAllPaths())
