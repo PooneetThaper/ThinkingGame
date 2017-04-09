@@ -4,7 +4,7 @@ import math
 import changetext
 import operator
 
-maxRound = 25
+maxRound = 5
 currentRound = -1
 record = {}
 randomPhotos = []
@@ -37,7 +37,19 @@ def nextRound():
 	currentRound +=1
 	currentTags = api.getAllTags(randomPhotos[currentRound])
 	# print(randomPhotos[currentRound],currentTags)
-	changetext(getTops())
+
+def endRound():
+	changetext.changeText(getTops())
+
+def makeGuess(number,guess):
+	global currentRound
+	global record
+
+	if currentRound > record.get(number).get("lastSuccessfulRound"):
+		index = isGood(guess)
+		if (index >= 0):
+			record[number]["score"] += getScore(index)
+			record[number]["lastSuccessfulRound"] = currentRound
 
 def getTops():
 	global record
@@ -56,15 +68,7 @@ def isGood(guess):
 def getScore(index):
 	return math.floor(3-(index/2.0))
 
-def makeGuess(number,guess):
-	global currentRound
-	global record
 
-	if currentRound > record.get(number).get("lastSuccessfulRound"):
-		index = isGood(guess)
-		if (index >= 0):
-			record[number]["score"] += getScore(index)
-			record[number]["lastSuccessfulRound"] = currentRound
 
 setUpGame()
 for i in range(5):

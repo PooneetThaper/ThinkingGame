@@ -41,10 +41,8 @@ def getAllTags(path):
     return cursor[0]['tags']
 
 if __name__ == "__main__":
-    '''
     #for adding to the db
     for file in os.listdir('images_raw'):
         print(file)
         add(file)
-    '''
     print(getAllPaths())
