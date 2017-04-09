@@ -20,8 +20,8 @@ def add(filename):
         tagHolder.append(tag)
     #MongoDB stuff
     ##Adding stuff
-    print pathM
-    print tagHolder[:5]
+    print (pathM)
+    print (tagHolder[:5])
     result = db.photos.insert_one(
         {
             "path":pathM,

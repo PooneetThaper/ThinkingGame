@@ -1,7 +1,7 @@
 import random
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-import api.py
+import api
 
 maxRound = 5
 currentRound = 1
