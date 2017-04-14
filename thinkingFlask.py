@@ -18,8 +18,8 @@ f.close()
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
 # client.messages.create(
-#         to = '9178681272',
-#         from_ = '3476581337',
+#         to = '',
+#         from_ = '',
 #         body = 'yay?',
 #		  media_url = 'https://raw.githubusercontent.com/pooneetthaper/ThinkingGame/master/images/0.jpg?token=AHlePwtuOuIbczP3cS06i2m1i6J55ijhks5Y80yBwA%3D%3D'
 #    )
